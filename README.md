@@ -7,33 +7,65 @@ En la carpeta "Codes" se encuentran los notebooks utilizados para el trabajo de 
 Notebook encargado de procesar los archivos geográficos regionales en formato .shp; verificar la consistencia de las redes tanto de manera individual como integrada; y generar las redes correspondientes a cada período (1970, 1986 y actualidad), calculando los tiempos de viaje asociados a cada camino de la red.
 
 ### Input:
-16 redes regionales (nodos y aristas); coeficientes de costos de transporte elaborados en el do-file "coeficientes de costo".
+* 16 redes regionales (nodos y aristas)
+*  coeficientes de costos de transporte elaborados en el do-file "coeficientes de costo".
 
 ### Output:
 Redes integradas para 1970, 1986 y la actualidad (nodos y aristas), con una columna que contiene el tiempo de transporte, medido en segundos, para cada camino.
 
+## Importante:
+Código utiliza API KEY google maps matrix, por lo cual necesita una cuenta de pago en Google Cloud para estimar variables duration y distance. 
 
 ## 2) Centros_de_gravedad_pob
 ### Descripción: 
+Código encargado de trabajar islas de conectividad (trabajo manual en Qgis, se encuentran los caminos incongruentes según la cartografía histórica y se añaden a la base 1986). Posteriormente, a partír de la cartografía censal de 2024 se estiman los centros de gravedad poblacional que definen a las entidades comunales de 2024. Finalmente, se procede a unir estos nodos centro de gravedad mediante un proceso de homologación con el nodo de red en 1970 más cercano.
+
+
 ### Input: 
+* Cartógrafías censales Chile 2024: Entidades y Manzanas.
+* Redes Unificadas v1 1970, 1986 y actualidad.
 ### Output:
+* Redes integradas para 1970, 1986 y actualidad con nodos centros de gravedad poblacional. Output con formato: del "edges_RED_unificado_v2.shp" y "nodes_RED_unificado_v2.shp".
+
+
 
 ## 3) esimacion ruta
 ### Descripción: 
-### Input: 
+Código encargado de procesar las redes v2, generando grafo geoespacial para cada red sobre el cual se procesan nuevas fronteras (si es que la unión de la red no fue efectiva en la etapa v1). Posterirmente se estiman rutas óptimas a partir del algóritmo de Djkstra utilizando como ponderador las variables de duración de cada red.
+
+
+### Input:
+* Redes Unificadas v2 1970, 1986 y actualidad.
+
 ### Output:
+Matrices Origen destino (OD) con estimación de tiempo de viaje desde cada par de comunas identificadas como centros de gravedad poblacional para cada 1970, 1986 y actialidad. Output con formato:  "matriz_OD_FECHA.csv". 
 
 
-## 4) Estimacion_theta
+
+
+## 4) mapping_1970_2024
 ### Descripción: 
+Código encargado de construir una tabla de correspondencia (mapping) entre las comunas modernas (2024) y las comunas históricas de 1970, basándose en ubicación geográfica de los LPA de 1970 y 2024. Se calculan los centroides territoriales de las comunas de 2024 y posteriormente se vincula con el polígono histórico de 1970 de la comuna madre. 
+
 ### Input: 
+* Cartografía LPA comunas 2024.
+* Cartografía LPA comunas 1970.
+  
 ### Output:
+Matriz de relación comunas madres e hijas. Ejemplo: Comuna SAN JOAQUIN (hija) -> SAN MIGUEL (madre 1970). Ouput con formato: "mapping_1970_2024_v2.csv"
 
-
-## 5) mapping_1970_2024
+## 5) Estimacion_theta
 ### Descripción: 
+Código encargado de estimar el parametro de elasticidad del comercio (Theta) que minimiza el error cuadrático siguiendo el setting empírico del trabajo. Primero se procesan las matrices OD para vincular los tiempos OD 1980 con las comunas históricas, luego se procesa el setting empírico par distintos valores de theta revisados en la literatura de trade. Se selecciona el valor de theta que minimiza la suma del error cuadrático. 
+
+
 ### Input: 
+* Información electoral a nivel de comuna 1988.
+* Mapping histórico.
+* Información poblacional.
+* Matrices OD 1970 y 1980.
 ### Output:
+Estimación de theta que mejor ajusta el setting empírico, en este caso theta = 4. 
 
 
 ## 6) DATA_market_access_comunas1970_RECONSTRUIDO
