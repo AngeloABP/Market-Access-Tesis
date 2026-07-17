@@ -95,7 +95,7 @@ Noteebok que se encarga de transformar la data elecotral de las elecciones extra
 * pdf "elecciones_1970"
 * data bruta generadao "elecciones_1970_comunal_pdf.csv"
 ### Output:
-Data final de elecciones 1970.
+Data final de elecciones 1970. Output con formato: "panel_con_elecciones_1970_corregidas.csv". 
 
 ## 8) Market_access_plus_output_comunas1970
 ### Descripción: 
@@ -109,7 +109,7 @@ Data final de elecciones 1970.
 ### Output:
 
 
-10) Construccion_Variables_Represion
+## 10) Construccion_Variables_Represion
 ### Descripción: 
 ### Input: 
 ### Output:
