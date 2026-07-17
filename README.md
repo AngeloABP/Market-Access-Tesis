@@ -97,10 +97,20 @@ Noteebok que se encarga de transformar la data elecotral de las elecciones extra
 ### Output:
 Data final de elecciones 1970. Output con formato: "panel_con_elecciones_1970_corregidas.csv". 
 
+
 ## 8) Market_access_plus_output_comunas1970
 ### Descripción: 
+Código encargado de unir las bases de Market Access, elecciones (pleb 1988, 2020 y 2022; presidenciales 1989-2009 y diputado 1989-2005), controles (geográficos, demográfdicos y elecciones Alessandri) y estimaciones de market access extralocal (IV).
+
 ### Input: 
+* dataframe sección 6: market_access_comunas1970_sensibilidad.csv
+* dataframe stata elecciones.
+* dataframe elecciones plebiscitos (Resultados_plebiscito_2022, Resultados_plebiscito_88 y esultados-Plebiscito-Constitucion-Politica-2020).
+* dataframe mapping.
+* dataframe población.
+  
 ### Output:
+Dataframe principal de la investigación formato dta: base_unificada_ma_elecciones_comunas1970.dta. Sobre esta base se realizan los principales análisis y se unen las bases auxiliares de los ejercicios de mecanismos.
 
 
 ## 9) Construccion_Variables_Distancia_Puertos
