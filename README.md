@@ -63,22 +63,39 @@ Código encargado de estimar el parametro de elasticidad del comercio (Theta) qu
 * Información electoral a nivel de comuna 1988.
 * Mapping histórico.
 * Información poblacional.
-* Matrices OD 1970 y 1980.
+* Matrices OD 1970 y 1980 y 2023.
 ### Output:
 Estimación de theta que mejor ajusta el setting empírico, en este caso theta = 4. 
 
 
 ## 6) DATA_market_access_comunas1970_RECONSTRUIDO
 ### Descripción: 
-### Input: 
-### Output:
+Notebook encargado de calcular los delta-Market Access para cada comuna histórica de 1970 en varias etapas.
+Primero, se reconicila la información poblacional y matrices de tiempo origen-destino respecto a las entidades comunales históricas.
+Segundo, se estiman los log-matket access para un panel en formato long y wide, junto con los delta market access.
+Tercero, se realiza el mismo ejercicio para distintos valores de theta.
+Posteriormente se realizan distintos mapas descriptivos de la estimación. 
 
+### Input: 
+* Mapping histórico.
+* Censos Históricos.
+* Flujos de comercio bilateral 1970.
+* Deflactor del PIB.
+* PIB percapital.
+* Matrices OD 1970 y 1986 y 2023.
+* Theta estimado (theta = 4)
+  
+### Output:
+Estimación delta market access en formato para 1970-1986 y 1986-2024, para distintos valores de theta. Output con formato: "market_access_comunas1970_sensibilidad.csv"
 
 ## 7) elecciones_presidenciales_1970
 ### Descripción: 
+Noteebok que se encarga de transformar la data elecotral de las elecciones extraida del pdf de FLACSO "elecciones 1970". 
 ### Input: 
+* pdf "elecciones_1970"
+* data bruta generadao "elecciones_1970_comunal_pdf.csv"
 ### Output:
-
+Data final de elecciones 1970.
 
 ## 8) Market_access_plus_output_comunas1970
 ### Descripción: 
