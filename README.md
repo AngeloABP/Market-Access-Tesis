@@ -2,7 +2,7 @@
 
 Códigos utilizados en el trabajo de tesis de grado magíster en economía UC. La tesis estudia el efecto del acceso a mercados sobre resultados electorales a nivel comunal en Chile, construyendo medidas de *market access* a partir de redes viales históricas reconstruidas para 1970, 1986 y la actualidad.
 
-En la carpeta `Codes_final` se encuentran los notebooks utilizados para el trabajo de datos de la tesis. El flujo completo va desde la construcción de las redes viales geoespaciales hasta la consolidación de la base de datos analítica principal. El orden de estimación es el siguiente:
+En la carpeta `Codes` se encuentran los notebooks utilizados para el trabajo de datos de la tesis. El flujo completo va desde la construcción de las redes viales geoespaciales hasta la consolidación de la base de datos analítica principal. El orden de estimación es el siguiente:
 
 ---
 
